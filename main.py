@@ -1,8 +1,7 @@
 from stats import count
 from stats import count_characters
-
-char_count = count_characters()
+from stats import Sorted
 
 count()
 
-print(char_count)
+print(sorted(count_characters()))
