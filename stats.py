@@ -1,21 +1,23 @@
-def get_book_text(path_to_file):
-    with open(path_to_file) as file:
-        return file.read()
-    
-path = '/home/dreadfarer/github.com/Dreadfarer/bookbot/books/frankenstein.txt'
-book_text=get_book_text(path)
-words = book_text.split()
+def get_num(text):
+    words = text.split()
+    return len(words)
 
-def count():
-    print(f'Found {len(words)} total words')
-
-def count_characters():
+def get_chars_dict(text):
     dict = {}
-    for word in words:
-        lowered_char = word.lower()
-        for char in lowered_char:
-            if char in dict:
-                dict[char] += 1
-            else:
-                dict[char] = 1
+    for c in text:
+        lowered = c.lower()
+        if lowered in dict:
+            dict[lowered] += 1
+        else:
+            dict[lowered] = 1
     return dict
+
+def sort_on(d):
+    return d["num"]
+
+def chars_dict_to_sorted_list(num_chars_dict):
+    sorted_list = []
+    for ch in num_chars_dict:
+        sorted_list.append({"char": ch, "num": num_chars_dict[ch]})
+    sorted_list.sort(reverse=True, key=sort_on)
+    return sorted_list
